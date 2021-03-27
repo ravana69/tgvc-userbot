@@ -22,6 +22,10 @@ To stop use !stop command
 
 
 # Commands available only for anonymous admins
+async def anon_filter(_, __, m: Message):
+    return bool(m.from_user is None and m.sender_chat)
+
+anonymous = filters.create(anon_filter)
 
 GROUP_CALLS = {}
 FFMPEG_PROCESSES = {}
