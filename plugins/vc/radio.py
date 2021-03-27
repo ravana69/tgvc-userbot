@@ -30,8 +30,11 @@ anonymous = filters.create(anon_filter)
 GROUP_CALLS = {}
 FFMPEG_PROCESSES = {}
 
-
-@Client.on_message(anonymous & filters.command('start', prefixes='!'))
+@Client.on_message(filters.text
+                   & self_or_contact_filter
+                   & ~filters.edited
+                   & ~filters.via_bot
+                   & filters.regex("^!stert$"))
 async def start(client, message: Message):
     input_filename = f'radio-{message.chat.id}.raw'
 
@@ -75,7 +78,11 @@ async def start(client, message: Message):
     await message.reply_text(f'Radio #{station_id} is playing...')
 
 
-@Client.on_message(anonymous & filters.command('stop', prefixes='!'))
+@Client.on_message(filters.text
+                   & self_or_contact_filter
+                   & ~filters.edited
+                   & ~filters.via_bot
+                   & filters.regex("^!stup$"))
 async def stop(_, message: Message):
     group_call = GROUP_CALLS.get(message.chat.id)
     if group_call:
