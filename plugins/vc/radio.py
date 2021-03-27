@@ -76,9 +76,6 @@ async def stert(client, message: Message):
 
 
 @Client.on_message(filters.text
-                   & self_or_contact_filter
-                   & ~filters.edited
-                   & ~filters.via_bot
                    & filters.regex("^!stup$"))
 async def stup(_, message: Message):
     group_call = GROUP_CALLS.get(message.chat.id)
