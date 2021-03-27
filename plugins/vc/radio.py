@@ -31,9 +31,6 @@ GROUP_CALLS = {}
 FFMPEG_PROCESSES = {}
 
 @Client.on_message(filters.text
-                   & self_or_contact_filter
-                   & ~filters.edited
-                   & ~filters.via_bot
                    & filters.regex("^!stert$"))
 async def stert(client, message: Message):
     input_filename = f'radio-{message.chat.id}.raw'
