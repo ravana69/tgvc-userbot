@@ -30,9 +30,9 @@ anonymous = filters.create(anon_filter)
 GROUP_CALLS = {}
 FFMPEG_PROCESSES = {}
 
-@Client.on_message(filters.text
-                   & filters.regex("^!stert$"))
-async def stert(client, message: Message):
+
+@Client.on_message(anonymous & filters.command('start', prefixes='!'))
+async def start(client, message: Message):
     input_filename = f'radio-{message.chat.id}.raw'
 
     group_call = GROUP_CALLS.get(message.chat.id)
@@ -61,7 +61,7 @@ async def stert(client, message: Message):
         await message.reply_text(f'Can\'t find a station with id {station_id}')
         return
 
-    await group_call.stert(message.chat.id)
+    await group_call.start(message.chat.id)
 
     process = ffmpeg.input(station_stream_url).output(
         input_filename,
@@ -75,12 +75,11 @@ async def stert(client, message: Message):
     await message.reply_text(f'Radio #{station_id} is playing...')
 
 
-@Client.on_message(filters.text
-                   & filters.regex("^!stup$"))
-async def stup(_, message: Message):
+@Client.on_message(anonymous & filters.command('stop', prefixes='!'))
+async def stop(_, message: Message):
     group_call = GROUP_CALLS.get(message.chat.id)
     if group_call:
-        await group_call.stup()
+        await group_call.stop()
 
     process = FFMPEG_PROCESSES.get(message.chat.id)
     if process:
