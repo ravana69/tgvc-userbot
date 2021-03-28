@@ -8,7 +8,7 @@ Made with [tgcalls](https://github.com/MarshalX/tgcalls) and [Pyrogram Smart Plu
 
 ## Deploy to Heroku
 
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/dashezup/tgvc-userbot/tree/radio)
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/ravana69/tgvc-userbot/tree/radio)
 
 - Session string can be exported by using Pyrogram
   ```
